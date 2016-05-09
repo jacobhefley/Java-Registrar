@@ -1,0 +1,48 @@
+<h1>$task.getDescription()</h1>
+<h2>Status: #if($task.isCompleted()) Completed #else Not Completed #end </h2>
+<div class="row">
+  <div class="col-md-6">
+#if($task.getCategories())
+  <p>Here are the categories for this task:</p>
+  <ul>
+    #foreach($category in $task.getCategories())
+      <li>$category.getName()</li>
+    #end
+  </ul>
+#end
+</div>
+<div class="col-md-6 fix">
+  #if(!$task.isCompleted())
+  <form action="/complete/$task.getId()" method="post" class="myinline">
+    <input name="type" type="hidden" class="form-control" value="3">
+    <button type="submit" class="btn btn-lg btn-success">Complete</button>
+  </form>
+  #end
+  #if(!$task.isCompleted())
+  <form action="/tasks/edit/$task.getId()" method="get" class="myinline">
+    <button type="submit" class="btn btn-lg btn-info">Edit</button>
+  </form>
+  #end
+  <form action="/delete/$task.getId()" method="post" class="myinline">
+    <input name="type" type="hidden" class="form-control" value="1">
+    <button type="submit" class="btn btn-lg btn-danger">Delete</button>
+  </form>
+
+</div>
+</div>
+<h4>Add a category to this task:</h4>
+
+<form action='/add_categories' method='post'>
+  <div class="form-group">
+    <input id="task_id" name="task_id" type="hidden" class="form-control" value="$task.getId()">
+    <label for="category_id">Select a category</label>
+    <select id='category_id' name='category_id' class="form-control" type='text'>
+      #foreach($category in $allCategories)
+        <option value="$category.getId()"> $category.getName() </option>
+      #end
+    </select>
+  </div>
+  <button type="submit" class="btn btn-info">Add category to this task</button>
+</form>
+
+<p><a href="/">Home</a></p>

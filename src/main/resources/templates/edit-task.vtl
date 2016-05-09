@@ -1,0 +1,16 @@
+<h1>Edit Task:</h1>
+<h2>$task.getDescription()</h2>
+<form action="/tasks-update/$task.getId()" method="post">
+  <div class="form-group">
+    <label for="description">Task description</label>
+    <input id="description" name="description" class="form-control" type="text" value="$task.getDescription()">
+  </div>
+
+  <div class="form-group">
+    <label for="duedate">Task Due Date</label>
+    <input id="duedate" name="duedate" class="form-control" type="date" value="$task.getDuedate()">
+  </div>
+  <button type="submit" class="btn btn-success">Update Task</button>
+</form>
+
+<p><a href="/">Home</a></p>

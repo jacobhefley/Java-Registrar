@@ -1,0 +1,56 @@
+<h1>$category.getName()</h1>
+
+#if($category.getTasks())
+  <p>Here are the tasks for this category:</p>
+    <ul>
+      #foreach($task in $category.getTasks())
+
+          <div class="row">
+            <div class="col-md-6">
+                #if($task.isCompleted())
+                <del>
+                #end
+                <li>$task.getDescription()</li></del>
+            </div>
+          <div class="col-md-6 fix">
+              #if(!$task.isCompleted())
+              <form action="/complete/$task.getId()" method="post" class="myinline">
+                <input name="type" type="hidden" class="form-control" value="2">
+                <input name="id" type="hidden" class="form-control" value="$category.getId()">
+                <button type="submit" class="btn btn-lg btn-success">Complete</button>
+              </form>
+              #end
+              #if(!$task.isCompleted())
+              <form action="/tasks/edit/$task.getId()" method="get" class="myinline">
+                <button type="submit" class="btn btn-lg btn-info">Edit</button>
+              </form>
+              #end
+              <form action="/delete/$task.getId()" method="post" class="myinline">
+                <input name="type" type="hidden" class="form-control" value="2">
+                <input name="id" type="hidden" class="form-control" value="$category.getId()">
+                <button type="submit" class="btn btn-lg btn-danger">Delete</button>
+              </form>
+
+          </div>
+        </div>
+      #end
+    </ul>
+#end
+
+<h4>Add a task to this category:</h4>
+
+<form action='/add_tasks' method='post'>
+  <div class="form-group">
+    <input id="category_id" name="category_id" type="hidden" class="form-control" value="$category.getId()">
+    <label for="task_id">Select a task</label>
+    <select id='task_id' name='task_id' class="form-control" type='text'>
+      #foreach($task in $allTasks)
+        <option value="$task.getId()"> $task.getDescription() </option>
+      #end
+    </select>
+  </div>
+  <button type="submit" class="btn btn-info">Add task to this category</button>
+</form>
+
+
+<p><a href="/">Home</a></p>

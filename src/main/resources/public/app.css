@@ -1,0 +1,9 @@
+.myinline {
+    display: inline-block;
+}
+.fix{
+  text-align: right;
+}
+li{
+  font-size: 1.4em;
+}
