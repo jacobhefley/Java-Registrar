@@ -1,0 +1,13 @@
+<h1>$course.getCourse()</h1>
+
+#if($course.getStudents())
+  <p>Here are the students for this course:</p>
+    <ul>
+      #foreach($student in $course.getStudents())
+          <li>$student.getLastName(), $student.getFirstName()
+          <ul><li>$student.getDoe()</li></ul></li>
+          <hr>
+      #end
+    </ul>
+#end
+<p><a href="/">Home</a></p>

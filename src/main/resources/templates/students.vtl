@@ -1,0 +1,27 @@
+<h1>All Students</h1>
+
+<ul>
+  #foreach ($student in $students)
+    <li><a href="/students/$student.getId()">$student.getLastName(), $student.getFirstName()</a>
+      <ul><li>Enrolled: $student.getDoe()</li></ul></li>
+    <hr>
+  #end
+</ul>
+
+<p>Add a new Student:</p>
+
+<form action="/students" method="post">
+  <div class="form-group">
+    <label for="firstname">First Name</label>
+    <input id="firstname" name="firstname" class="form-control" type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="lastname">Last Name</label>
+    <input id="lastname" name="lastname" class="form-control" type="text">
+  </div>
+    <button type="submit" class="btn btn-success">Add Student</button>
+
+</form>
+
+<p><a href="/">Home</a></p>

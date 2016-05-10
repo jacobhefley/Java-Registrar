@@ -1,0 +1,27 @@
+<h1>All courses</h1>
+
+#if($courses.size() > 0)
+<ul>
+  #foreach ($course in $courses)
+    <li><a href="/courses/$course.getId()">$course.getCourse()</a></li>
+    <li><span style="font-weight:bold;">Course Number: </span>$course.getCourseNum()</li>
+    <hr>
+  #end
+</ul>
+#end
+<p>Add a new course:</p>
+
+<form action="/courses" method="post">
+  <div class="form-group">
+    <label for="course">Course Name</label>
+    <input id="course" name="course" class="form-control" type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="coursenum">Course Number</label>
+    <input id="coursenum" name="coursenum" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn btn-success">Add Course</button>
+</form>
+
+<p><a href="/">Home</a></p>
